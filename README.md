@@ -1,1 +1,1 @@
-# theme-setup
+# Cyan Digital Marketing Agency

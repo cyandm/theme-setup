@@ -1,0 +1,7 @@
+@use 'sass:math';
+
+@function PxToRem($px) {
+  @if ($px % 4 == 0) {
+    @return calc($px / 16) + rem;
+  }
+}
