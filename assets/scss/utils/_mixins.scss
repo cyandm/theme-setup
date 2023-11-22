@@ -1,0 +1,139 @@
+@use './variables' as *;
+@use './functions' as *;
+
+@mixin d_flex(
+  $dir: row,
+  $j_c: start,
+  $a_i: start,
+  $wrap: wrap,
+  $equal_children: false,
+  $gap: 0
+) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $j_c;
+  align-items: $a_i;
+  flex-wrap: $wrap;
+  gap: $gap;
+
+  @if ($equal_children) {
+    > * {
+      flex: 1;
+    }
+  }
+}
+
+@mixin psudo(
+  $el: after,
+  $content: '',
+  $inset: 0 0 auto auto,
+  $square: PxToRem(4),
+  $display: block,
+  $position: absolute
+) {
+  position: relative;
+  isolation: isolate;
+
+  &::#{$el} {
+    content: $content;
+    position: $position;
+    inset: $inset;
+    width: $square;
+    height: $square;
+    display: $display;
+    @content;
+  }
+}
+
+@mixin base_font() {
+  color: $white;
+  font-family: $font;
+  font-size: PxToRem(20);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+@mixin font_style($type) {
+  @include base_font();
+  @if ($type == 't1') {
+    font-size: PxToRem(56);
+    font-weight: 700;
+    line-height: auto;
+  }
+  @if ($type == 'header') {
+    font-size: PxToRem(36);
+    font-weight: 700;
+    line-height: auto;
+  }
+  @if ($type == 'header2') {
+    font-size: PxToRem(24);
+    font-weight: 400;
+    line-height: auto;
+  }
+  @if ($type == 'header3') {
+    font-size: PxToRem(24);
+    font-weight: 500;
+    line-height: auto;
+  }
+  @if ($type == 'header4') {
+    font-size: PxToRem(20);
+    line-height: auto;
+    font-weight: 400;
+  }
+  @if ($type == 'header5') {
+    font-size: PxToRem(20);
+    font-weight: 700;
+    line-height: auto;
+  }
+  @if ($type == 'header6') {
+    font-size: PxToRem(24);
+    font-weight: 700;
+    line-height: auto;
+  }
+  @if ($type == 'header7') {
+    font-size: PxToRem(32);
+    font-weight: 700;
+    line-height: auto;
+  }
+  @if ($type == 'caption') {
+    font-size: PxToRem(12);
+    font-weight: 500;
+    line-height: auto;
+  }
+  @if ($type == 'body') {
+    font-size: PxToRem(16);
+    font-weight: 400;
+    line-height: PxToRem(32);
+  }
+}
+
+@mixin text_over_flow(
+  $overflow: hidden,
+  $display: -webkit-box,
+  $-webkit-line-clamp: 3,
+  $-webkit-box-orient: vertical
+) {
+  overflow: $overflow;
+  display: $display;
+  -webkit-line-clamp: $-webkit-line-clamp;
+  -webkit-box-orient: $-webkit-box-orient;
+  @content;
+}
+
+@mixin make_icon($content) {
+  &::after {
+    content: $content;
+    font-family: 'cyan-icon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @content;
+  }
+}
