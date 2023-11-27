@@ -49,7 +49,8 @@ if (!class_exists('cyn-theme-init')) {
 
 		public function cyn_admin_files()
 		{
-			wp_enqueue_style('cyn-admin', get_stylesheet_directory_uri() . '/css/admin.css');
+			wp_enqueue_style('cyn-admin', get_stylesheet_directory_uri() . '/assets/css/admin.css');
+			wp_enqueue_script('cyn-admin', get_stylesheet_directory_uri() . '/assets/js/admin.js');
 		}
 
 		public function cyn_logout_user()
