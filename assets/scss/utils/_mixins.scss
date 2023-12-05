@@ -1,34 +1,64 @@
-@use './variables' as *;
 @use './functions' as *;
+@use './variable' as *;
 
-@mixin d_flex(
-  $dir: row,
-  $j_c: start,
-  $a_i: start,
-  $wrap: wrap,
-  $equal_children: false,
-  $gap: 0
-) {
-  display: flex;
-  flex-direction: $dir;
-  justify-content: $j_c;
-  align-items: $a_i;
-  flex-wrap: $wrap;
-  gap: $gap;
+@mixin mq($viewport: 'xs', $type: screen) {
+  $window_width: map-get(
+    (
+      'xs': 320px,
+      'sm': 480px,
+      'md': 768px,
+      'lg': 992px,
+      'xl': 1200px,
+    ),
+    $viewport
+  );
 
-  @if ($equal_children) {
-    > * {
-      flex: 1;
-    }
+  @media #{$type} and (max-width: #{$window_width}) {
+    @content;
   }
 }
 
-@mixin psudo(
-  $el: after,
-  $content: '',
+@mixin fs($type: 'body') {
+  $font_map: map-get(
+    (
+      'title': make_font_list(24px, 700),
+      'title-s': make_font_list(24px, 700),
+      'h1': make_font_list(24px, 700),
+      'h2': make_font_list(24px, 700),
+      'h3': make_font_list(24px, 700),
+      'h4': make_font_list(24px, 700),
+      'h5': make_font_list(24px, 700),
+      'h6': make_font_list(24px, 700),
+      'body': make_font_list(16px, 700),
+      'body-s': make_font_list(16px, 500),
+      'caption': make_font_list(16px, 500),
+    ),
+    $type
+  );
+
+  @if ($font_map) {
+    font-size: map-get($font_map, 'font-size');
+    font-weight: map-get($font_map, 'font-weight');
+    line-height: map-get($font_map, 'line-height');
+  } @else {
+    @error "You'r input #{$type} is wrong";
+  }
+}
+
+@mixin max_line($line) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+//#region pseudo
+@mixin pseudo(
   $inset: 0 0 auto auto,
   $square: PxToRem(4),
-  $display: block,
+  $z-index: 1,
+  $el: after,
+  $content: '',
   $position: absolute
 ) {
   position: relative;
@@ -40,86 +70,12 @@
     inset: $inset;
     width: $square;
     height: $square;
-    display: $display;
+    z-index: $z-index;
     @content;
   }
 }
+//#endregion
 
-@mixin base_font() {
-  color: $white;
-  font-family: $font;
-  font-size: PxToRem(20);
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-@mixin font_style($type) {
-  @include base_font();
-  @if ($type == 't1') {
-    font-size: PxToRem(56);
-    font-weight: 700;
-    line-height: auto;
-  }
-  @if ($type == 'header') {
-    font-size: PxToRem(36);
-    font-weight: 700;
-    line-height: auto;
-  }
-  @if ($type == 'header2') {
-    font-size: PxToRem(24);
-    font-weight: 400;
-    line-height: auto;
-  }
-  @if ($type == 'header3') {
-    font-size: PxToRem(24);
-    font-weight: 500;
-    line-height: auto;
-  }
-  @if ($type == 'header4') {
-    font-size: PxToRem(20);
-    line-height: auto;
-    font-weight: 400;
-  }
-  @if ($type == 'header5') {
-    font-size: PxToRem(20);
-    font-weight: 700;
-    line-height: auto;
-  }
-  @if ($type == 'header6') {
-    font-size: PxToRem(24);
-    font-weight: 700;
-    line-height: auto;
-  }
-  @if ($type == 'header7') {
-    font-size: PxToRem(32);
-    font-weight: 700;
-    line-height: auto;
-  }
-  @if ($type == 'caption') {
-    font-size: PxToRem(12);
-    font-weight: 500;
-    line-height: auto;
-  }
-  @if ($type == 'body') {
-    font-size: PxToRem(16);
-    font-weight: 400;
-    line-height: PxToRem(32);
-  }
-}
-
-@mixin text_over_flow(
-  $overflow: hidden,
-  $display: -webkit-box,
-  $-webkit-line-clamp: 3,
-  $-webkit-box-orient: vertical
-) {
-  overflow: $overflow;
-  display: $display;
-  -webkit-line-clamp: $-webkit-line-clamp;
-  -webkit-box-orient: $-webkit-box-orient;
-  @content;
-}
 
 @mixin make_icon($content) {
   &::after {
@@ -137,3 +93,27 @@
     @content;
   }
 }
+
+//#region d-flex
+@mixin d_flex(
+  $dir: row,
+  $j_c: start,
+  $a_i: start,
+  $wrap: wrap,
+  $even_column: false,
+  $gap: 0
+) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $j_c;
+  align-items: $a_i;
+  flex-wrap: $wrap;
+  gap: $gap;
+
+  @if ($even_column) {
+    > * {
+      flex: 1;
+    }
+  }
+}
+//#endregion

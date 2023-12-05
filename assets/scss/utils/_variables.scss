@@ -1,4 +1,67 @@
-$white: #fff;
+@use './functions' as *;
 
-//font
-$font: 'Peyda';
+//#region colors
+:root {
+  --clr-primary-light: ;
+  --clr-primary-main: ;
+  --clr-primary-dark: ;
+  --clr-primary-text-contrast: ;
+
+  --clr-secondary-light: ;
+  --clr-secondary-main: ;
+  --clr-secondary-dark: ;
+  --clr-secondary-text-contrast: ;
+
+  --clr-accent-light: ;
+  --clr-accent-main: ;
+  --clr-accent-dark: ;
+  --clr-accent-text-contrast: ;
+
+  --clr-bg-default: ;
+  --clr-bg-paper: ;
+}
+
+:root {
+  --clr-error-light: ;
+  --clr-error-main: ;
+  --clr-error-dark: ;
+
+  --clr-warning-light: ;
+  --clr-warning-main: ;
+  --clr-warning-dark: ;
+
+  --clr-success-light: ;
+  --clr-success-main: ;
+  --clr-success-dark: ;
+
+  --clr-information-light: ;
+  --clr-information-main: ;
+  --clr-information-dark: ;
+}
+//#endregion
+
+//#region spacing
+$s_1: px_to_rem(4);
+$s_2: px_to_rem(8);
+$s_3: px_to_rem(12);
+$s_4: px_to_rem(16);
+$s_5: px_to_rem(20);
+$s_6: px_to_rem(24);
+$s_7: px_to_rem(32);
+$s_8: px_to_rem(48);
+$s_9: px_to_rem(80);
+//#endregion
+
+//#region radius
+$r_1: px_to_rem(8);
+$r_2: px_to_rem(16);
+$r_3: px_to_rem(24);
+//#endregion
+
+//#region borders
+$b_1: 1px solid var(--clr-primary-main);
+//#endregion
+
+//#region shadows
+
+//#endregion

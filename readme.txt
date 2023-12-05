@@ -1,1 +1,1 @@
-This theme developed by Love & Coffee;
+# Cyan Digital Marketing Agency
