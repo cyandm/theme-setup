@@ -1,5 +1,5 @@
 @use './functions' as *;
-@use './variable' as *;
+@use './variables' as *;
 
 @mixin mq($viewport: 'xs', $type: screen) {
   $window_width: map-get(
