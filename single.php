@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 $post_type = get_queried_object()->post_type;
 
 if ( $post_type ) {
