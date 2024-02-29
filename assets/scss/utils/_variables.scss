@@ -1,4 +1,4 @@
-@use './functions' as *;
+@use "./functions" as *;
 
 //#region colors
 :root {
@@ -47,9 +47,14 @@ $s_3: px_to_rem(12);
 $s_4: px_to_rem(16);
 $s_5: px_to_rem(20);
 $s_6: px_to_rem(24);
-$s_7: px_to_rem(32);
-$s_8: px_to_rem(48);
-$s_9: px_to_rem(80);
+$s_7: px_to_rem(28);
+$s_8: px_to_rem(32);
+$s_9: px_to_rem(36);
+$s_10: px_to_rem(40);
+$s_11: px_to_rem(44);
+$s_12: px_to_rem(48);
+$s_13: px_to_rem(60);
+$s_14: px_to_rem(80);
 //#endregion
 
 //#region radius
