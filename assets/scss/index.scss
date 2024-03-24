@@ -1,5 +1,6 @@
-@forward './utils/index';
-@forward './layouts/index';
-@forward './components/index';
-@forward './pages/index';
-@forward './libs/index';
+@forward './utils';
+@forward './general/';
+@forward './layouts';
+@forward './components';
+@forward './pages';
+@forward './libs';
