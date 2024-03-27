@@ -65,3 +65,44 @@ function cyn_reading_time($id)
     $reading_time = ceil($word_count / 50);
     return $reading_time . ' Min';
 }
+
+function cyn_get_component( $name, $args = [] ) {
+	get_template_part( '/partials/components/' . $name, null, $args );
+}
+
+function cyn_get_card( $name, $args = [] ) {
+	get_template_part( '/partials/cards/' . $name, null, $args );
+}
+
+/**
+ * Summary of cyn_format_date
+ * @param DateTime $date
+ * @return bool|string
+ */
+function cyn_format_date( $date, $format = '' ) {
+
+	if ( $format == '' ) {
+		$format = 'yyyy/MM/dd';
+	}
+
+	$formatter = new IntlDateFormatter(
+		"en_US@calendar=persian",
+		IntlDateFormatter::FULL,
+		IntlDateFormatter::FULL,
+		'Asia/Tehran',
+		IntlDateFormatter::TRADITIONAL,
+		$format );
+
+	return $formatter->format( $date );
+}
+
+function cyn_format_acf_date( $field_name, $post_id, $format = '' ) {
+	$field = get_field( $field_name, $post_id );
+	$field = explode( '/', $field );
+	$field = implode( '/', array_reverse( $field ) );
+
+	$formatted_date = date_create( $field );
+	$formatted_date = cyn_format_date( $formatted_date, $format );
+
+	return $formatted_date;
+}
