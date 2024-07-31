@@ -44,7 +44,7 @@ if ( ! class_exists( 'cyn_theme_init' ) ) {
 		}
 
 		public function cyn_enqueue_files() {
-
+			wp_enqueue_style('cyn-tailwind', get_stylesheet_directory_uri() . '/assets/css/final-tailwind.css');
 			$css_path = $this->build ? '/assets/css/styles-main.css' : '/assets/css/compiled.css';
 			$js_path = $this->build ? '/assets/js/dist/scripts.min.js' : '/assets/js/dist/scripts.bundle.js';
 

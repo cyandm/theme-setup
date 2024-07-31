@@ -1,5 +1,3 @@
-<?php defined( 'ABSPATH' ) || exit; ?>
-
 <?php
 
 /****************************** Required Files */
