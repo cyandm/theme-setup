@@ -33,3 +33,4 @@ function cyn_get_menu_items_by_slug( $location ) {
 	return $navbar_items;
 
 }
+

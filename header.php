@@ -11,12 +11,15 @@
 	</head>
 
 	<body <?php body_class() ?>>
+
+		<div class="backdrop | fixed bg-black/25 inset-0 z-10 opacity-0 pointer-events-none"></div>
+
 		<?php wp_body_open() ?>
 
 		<?php get_template_part( '/assets/icons/icons' ) ?>
 
 		<?php if ( $render_template ) : ?>
-			<header>
+			<header class="relative z-10">
 				<div class="desktop-header | hidden md:block">
 					<?php cyn_get_part( '/header/top-header' ) ?>
 
