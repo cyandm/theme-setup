@@ -13,9 +13,18 @@
 	<body <?php body_class() ?>>
 		<?php wp_body_open() ?>
 
+		<?php get_template_part( '/assets/icons/icons' ) ?>
 
 		<?php if ( $render_template ) : ?>
 			<header>
+				<div class="desktop-header | hidden md:block">
+					<?php cyn_get_part( '/header/top-header' ) ?>
 
+					<?php cyn_get_part( '/header/bottom-header' ) ?>
+				</div>
+
+				<div class="mobile-header | block md:hidden">
+
+				</div>
 			</header>
 		<?php endif; ?>

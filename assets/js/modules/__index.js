@@ -1,1 +1,1 @@
-import './dark-mode';
+import './search-category';

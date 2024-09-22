@@ -1,22 +1,22 @@
 (() => {
-  // assets/js/modules/dark-mode.js
-  var themeSwitcher = document.querySelectorAll('input[name="themeSwitcher"]');
-  var setTheme = (theme) => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme_mode", theme);
-  };
-  themeSwitcher.forEach((el) => {
-    el.addEventListener("change", () => setTheme(el.value));
-  });
-  window.addEventListener("load", () => {
-    const themeMode = localStorage.getItem("theme_mode");
-    if (!themeMode)
+  // assets/js/modules/search-category.js
+  function searchCategory() {
+    var _a;
+    const searchCategorySelected = document.getElementById(
+      "searchCategorySelected"
+    );
+    const searchCategorySelectedInput = document.getElementById(
+      "searchCategorySelectedInput"
+    );
+    const searchCategory2 = document.getElementById("searchCategory");
+    if (!searchCategory2 || !searchCategorySelected || !searchCategorySelectedInput)
       return;
-    setTheme(themeMode);
-    themeSwitcher.forEach((el) => {
-      if (el.value !== themeMode)
-        return;
-      el.setAttribute("checked", "");
+    (_a = searchCategory2.querySelectorAll("span")) == null ? void 0 : _a.forEach((span) => {
+      span.addEventListener("click", () => {
+        searchCategorySelected.innerText = span.innerText;
+        searchCategorySelectedInput.value = span.innerText;
+      });
     });
-  });
+  }
+  searchCategory();
 })();

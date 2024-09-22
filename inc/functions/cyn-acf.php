@@ -5,34 +5,25 @@ function cyn_register_acf() {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
 	}
-	cyn_register_acf_company_settings();
-
+	cyn_register_acf_mega_menu();
 }
 
-function cyn_register_acf_company_settings() {
+function cyn_register_acf_mega_menu() {
 	$fields = [ 
-		cyn_acf_add_number( 'established_year', 'Established Year' ),
-		cyn_acf_add_text( 'country', 'country' ),
-		cyn_acf_add_text( 'location', 'location' ),
-		cyn_acf_add_text( 'phone', 'phone' ),
-		cyn_acf_add_image( 'flag', 'Flag' ),
-		cyn_acf_add_image( 'logo', 'Logo' ),
-		cyn_acf_add_options( 'verified_type', 'Verified Type', [ 'star-supplier', 'supplier' ] ),
-		cyn_acf_add_url( 'website', 'website' ),
-		cyn_acf_add_color( 'color', 'Color' ),
-
+		cyn_acf_add_boolean( 'is_mega_menu', 'is mega menu' ),
+		cyn_acf_add_image( 'mega_menu_image', 'mega menu image' ),
 	];
 	$location = [ 
 		[ 
 			[ 
-				'param' => 'post_type',
+				'param' => 'nav_menu_item',
 				'operator' => '==',
-				'value' => 'post',
+				'value' => 'all',
 			],
 		],
 	];
 
-	cyn_register_acf_group( 'Company Settings', $fields, $location );
+	cyn_register_acf_group( 'Mega Menu Settings', $fields, $location );
 }
 
 

@@ -13,10 +13,10 @@ if ( ! class_exists( 'cyn_register' ) ) {
 
 		public function cyn_register_menus() {
 
-			//for use in theme => wp_nav_menu(['theme_location' => 'header_demo'])
+
 			register_nav_menus( [ 
-				'header_demo' => "Header Demo",
-				'footer_demo' => "Footer Demo",
+				CYN_DESKTOP_HEADER => "Desktop Header",
+
 			] );
 		}
 
@@ -38,15 +38,15 @@ if ( ! class_exists( 'cyn_register' ) ) {
 		public function cyn_page_register() {
 			//This pages can't be removed
 
-			if ( is_null( get_page_by_path( 'sample' ) ) ) {
-				wp_insert_post( [ 
-					'post_type' => 'page',
-					'post_status' => 'publish',
-					'post_title' => 'Sample',
-					'post_name' => 'sample',
-					'page_template' => 'templates/sample.php'
-				] );
-			}
+			// if ( is_null( get_page_by_path( 'home' ) ) ) {
+			// 	wp_insert_post( [ 
+			// 		'post_type' => 'page',
+			// 		'post_status' => 'publish',
+			// 		'post_title' => 'Sample',
+			// 		'post_name' => 'sample',
+			// 		'page_template' => 'templates/sample.php'
+			// 	] );
+			// }
 
 		}
 

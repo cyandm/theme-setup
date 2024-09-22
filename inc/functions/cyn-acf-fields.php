@@ -52,9 +52,6 @@ function cyn_acf_add_image( $name, $label ) {
 		'name' => $name,
 		'type' => 'image',
 		'return_format' => 'id',
-		'wrapper' => [ 
-			'width' => '25'
-		]
 	];
 }
 

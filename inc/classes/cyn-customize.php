@@ -8,8 +8,8 @@ if ( ! class_exists( 'cyn_customize' ) ) {
 
 		public function cyn_basic_settings( $wp_customize ) {
 
-			$this->cyn_register_panel_demo( $wp_customize );
-			$this->cyn_register_panel_demo_2( $wp_customize );
+			$this->cyn_register_panel_header( $wp_customize );
+
 
 		}
 
@@ -59,51 +59,36 @@ if ( ! class_exists( 'cyn_customize' ) ) {
 			}
 		}
 
-		private function cyn_register_panel_demo( $wp_customize ) {
+		private function cyn_register_panel_header( $wp_customize ) {
 
 			$wp_customize->add_panel(
-				'demo_panel',
+				'header',
 				[ 
-					'title' => 'CyanTheme - Demo Panel',
+					'title' => 'Header',
 					'priority' => 1
 				]
 			);
 
 
 			$wp_customize->add_section(
-				'demo_section',
+				'top_header',
 				[ 
-					'title' => 'Demo section',
+					'title' => 'Top header',
 					'priority' => 1,
-					'panel' => 'demo_panel'
+					'panel' => 'header'
 				]
 			);
 
-			$this->cyn_add_control( $wp_customize, 'demo_section', 'text', 'demo_text_control', 'Demo Text Control' );
+			//left corner
+			$this->cyn_add_control( $wp_customize, 'top_header', 'text', 'find_us_url', 'Find us URL' );
+			$this->cyn_add_control( $wp_customize, 'top_header', 'text', 'close_time', 'Close time' );
+
+			//right corner
+			$this->cyn_add_control( $wp_customize, 'top_header', 'text', 'faq_url', 'FAQ URL' );
+			$this->cyn_add_control( $wp_customize, 'top_header', 'text', 'track_order_url', 'Track order URL' );
+
 		}
 
-		private function cyn_register_panel_demo_2( $wp_customize ) {
-
-			$wp_customize->add_panel(
-				'demo_panel_2',
-				[ 
-					'title' => 'CyanTheme - Demo Panel 2',
-					'priority' => 2
-				]
-			);
-
-
-			$wp_customize->add_section(
-				'demo_section_2',
-				[ 
-					'title' => 'Demo section 2',
-					'priority' => 1,
-					'panel' => 'demo_panel_2'
-				]
-			);
-
-			$this->cyn_add_control( $wp_customize, 'demo_section_2', 'file', 'demo_file_control', 'Demo File Control' );
-		}
 
 	}
 }
