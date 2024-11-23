@@ -13,18 +13,18 @@ Cyan Theme Setup is a custom WordPress theme designed to provide a flexible and 
 
 ## How To Use
 
-. Download the theme files.
-. theme name
-. icons (nucleo)
-. screenshot.png (1200 \* 900)
-. fonts
+- Download the theme files.
+- theme name
+- icons (nucleo)
+- screenshot.png (1200 \* 900)
+- fonts
 
 ## Build Checklist
 
-. versioning
-. git push main
-. execute npm run build
-. upload to wordpress website target
+- versioning
+- git push main
+- execute npm run build
+- upload to wordpress website target
 
 ## License
 
