@@ -1,23 +1,35 @@
-# Cyan Digital Marketing Agency
+# Cyan Theme Setup
 
-# how to use icons?
+## Description
 
-with Nucleo app and hotdesk.json located on assets icons folder.
-in design you can find icons and then you must create project in Nucleo app.
-finally you must export project in svg symbol mode.
+Cyan Theme Setup is a custom WordPress theme designed to provide a flexible and easy-to-use framework for developers. This theme includes various features and options to enhance the user experience and streamline the development process.
 
-then you must created icons.php on partials folder and import by get_template_part() in header.php
+## Features
 
-note: in production version you must deleted hotdesk.json
+- Customizable theme options
+- Responsive design
+- Easy integration with popular plugins
+- Well-documented code
 
-# how to add fonts?
+## How To Use
 
-there is sample in assets/css/base-tailwind.css file for peyda font
+. Download the theme files.
+. theme name
+. icons (nucleo)
+. screenshot.png (1200 \* 900)
+. fonts
 
-# product version check list
+## Build Checklist
 
-1. run build script
-2. change parameters for cyan_theme_init instance on function.php file.
-3. remove icons folder from assets.
-4. change screenshot.png with last version of design, (1200 \* 900)
-5. config plugin0upoda
+. versioning
+. git push main
+. execute npm run build
+. upload to wordpress website target
+
+## License
+
+This theme is licensed under the GNU General Public License v2 or later.
+
+## Author
+
+Cyan Dm - [cyandm.com](https://cyandm.com)

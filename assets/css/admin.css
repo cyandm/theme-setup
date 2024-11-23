@@ -1,8 +1,4 @@
-@font-face {
-	font-family: Peyda;
-	src: url(../fonts/poppins/woff/Poppins-Medium.woff);
-}
-
-*:not(i, .ab-icon, .dashicons) {
-	font-family: Poppins !important;
-}
+/**
+ * Admin styles
+ * @package CyanTheme
+ */

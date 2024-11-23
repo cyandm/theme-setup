@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Peyda Font Family Persian Number Version*/
+@layer base {
+	@font-face {
+		font-family: 'PeydaFaNumber';
+		font-style: normal;
+		font-weight: 100;
+		font-display: swap;
+		src: url('../font/peyda/woff2/PeydaWebFaNum-Thin.woff2') format('woff2'),
+			url('../font/peyda/TTF/PeydaFaNum-Thin.ttf') format('TrueType'),
+			url('../font/peyda/woff/PeydaWebFaNum-Thin.woff') format('woff');
+	}
+
+	@font-face {
+		font-family: 'PeydaFaNumber';
+		font-style: normal;
+		font-weight: 200;
+		font-display: swap;
+		src: url('../font/peyda/woff2/PeydaWebFaNum-ExtraLight.woff2')
+				format('woff2'),
+			url('../font/peyda/TTF/PeydaFaNum-ExtraLight.ttf') format('TrueType'),
+			url('../font/peyda/woff/PeydaWebFaNum-ExtraLight.woff') format('woff');
+	}
+
+	@font-face {
+		font-family: 'PeydaFaNumber';
+		font-style: normal;
+		font-weight: 300;
+		font-display: swap;
+		src: url('../font/peyda/woff2/PeydaWebFaNum-Light.woff2') format('woff2'),
+			url('../font/peyda/TTF/PeydaFaNum-Light.ttf') format('TrueType'),
+			url('../font/peyda/woff/PeydaWebFaNum-Light.woff') format('woff');
+	}
+
+	@font-face {
+		font-family: 'PeydaFaNumber';
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+		src: url('../font/peyda/woff2/PeydaWebFaNum-Regular.woff2') format('woff2'),
+			url('../font/peyda/TTF/PeydaFaNum-Regular.ttf') format('TrueType'),
+			url('../font/peyda/woff/PeydaWebFaNum-Regular.woff') format('woff');
+	}
+
+	@font-face {
+		font-family: 'PeydaFaNumber';
+		font-style: normal;
+		font-weight: 500;
+		font-display: swap;
+		src: url('../font/peyda/woff2/PeydaWebFaNum-Medium.woff2') format('woff2'),
+			url('../font/peyda/TTF/PeydaFaNum-Medium.ttf') format('TrueType'),
+			url('../font/peyda/woff/PeydaWebFaNum-Medium.woff') format('woff');
+	}
+
+	@font-face {
+		font-family: 'PeydaFaNumber';
+		font-style: normal;
+		font-weight: 600;
+		font-display: swap;
+		src: url('../font/peyda/woff2/PeydaWebFaNum-SemiBold.woff2') format('woff2'),
+			url('../font/peyda/TTF/PeydaFaNum-SemiBold.ttf') format('TrueType'),
+			url('../font/peyda/woff/PeydaWebFaNum-SemiBold.woff') format('woff');
+	}
+
+	@font-face {
+		font-family: 'PeydaFaNumber';
+		font-style: normal;
+		font-weight: 700;
+		font-display: swap;
+		src: url('../font/peyda/woff2/PeydaWebFaNum-Bold.woff2') format('woff2'),
+			url('../font/peyda/TTF/PeydaFaNum-Bold.ttf') format('TrueType'),
+			url('../font/peyda/woff/PeydaWebFaNum-Bold.woff') format('woff');
+	}
+
+	@font-face {
+		font-family: 'PeydaFaNumber';
+		font-style: normal;
+		font-weight: 800;
+		font-display: swap;
+		src: url('../font/peyda/woff2/PeydaWebFaNum-ExtraBold.woff2')
+				format('woff2'),
+			url('../font/peyda/TTF/PeydaFaNum-ExtraBold.ttf') format('TrueType'),
+			url('../font/peyda/woff/PeydaWebFaNum-ExtraBold.woff') format('woff');
+	}
+
+	@font-face {
+		font-family: 'PeydaFaNumber';
+		font-style: normal;
+		font-weight: 900;
+		font-display: swap;
+		src: url('../font/peyda/woff2/PeydaWebFaNum-Black.woff2') format('woff2'),
+			url('../font/peyda/TTF/PeydaFaNum-Black.ttf') format('TrueType'),
+			url('../font/peyda/woff/PeydaWebFaNum-Black.woff') format('woff');
+	}
+}
+
+@layer base {
+	body {
+		font-family: 'PeydaFaNumber', sans-serif;
+		font-feature-settings: 'ss01' 1;
+		font-variant-ligatures: discretionary-ligatures;
+	}
+}

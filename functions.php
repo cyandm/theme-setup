@@ -1,25 +1,40 @@
 <?php
+/**
+ * Cyan Theme Functions
+ * this file is used to initialize the theme
+ * @package CyanTheme
+ */
 
-/****************************** Required Files */
-//globals
-require_once( __DIR__ . '/inc/cyn-global.php' );
+//Constants
+define( 'THEME_DIR', get_template_directory() );
+define( 'THEME_URI', get_template_directory_uri() );
+define( 'THEME_VERSION', '0.0.0' );
+define( 'ENVIRONMENT', 'development' ); //development, production
+define( 'THEME_SLUG', 'cyn-theme' );
+define( 'THEME_NAME', 'Cyan Theme' );
 
-//classes
-require_once( CYN_THEME_DIR . '/inc/classes/cyn-theme-init.php' );
-require_once( CYN_THEME_DIR . '/inc/classes/cyn-customize.php' );
-require_once( CYN_THEME_DIR . '/inc/classes/cyn-register.php' );
+define( 'THEME_ASSETS_DIR', THEME_DIR . '/assets' );
+define( 'THEME_ASSETS_URI', THEME_URI . '/assets' );
 
-//functions
-require_once( CYN_THEME_DIR . '/inc/functions/cyn-general.php' );
-require_once( CYN_THEME_DIR . '/inc/functions/cyn-menu.php' );
+define( 'THEME_IMAGES_DIR', THEME_DIR . '/assets/images' );
+define( 'THEME_IMAGES_URI', THEME_URI . '/assets/images' );
 
+include_once THEME_DIR . '/vendor/autoload.php';
 
-//acf
-include_once( CYN_ACF_PATH . 'acf.php' );
-require_once( CYN_THEME_DIR . '/inc/functions/cyn-acf-fields.php' );
-require_once( CYN_THEME_DIR . '/inc/functions/cyn-acf.php' );
+//Init theme
+Cyan\Theme\Classes\ThemeInit::init();
 
-//instance classes
-new cyn_theme_init( false, '0.0.0' );
-new cyn_register();
-new cyn_customize();
+//Third party plugins
+Cyan\Theme\Classes\ThirdParty::init();
+
+//Customize
+Cyan\Theme\Classes\Customize::init();
+
+//Custom code
+Cyan\Theme\Classes\CustomCode::init();
+
+//Register
+Cyan\Theme\Classes\Register::init();
+
+//Rest
+Cyan\Theme\Classes\Rest::init();

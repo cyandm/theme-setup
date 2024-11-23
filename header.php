@@ -1,33 +1,35 @@
-<?php $render_template = $args['render_template'] ?? true ?>
+<?php
+/**
+ * Header for wordpress theme
+ * its must include only head and body tags
+ * header templates located in /partials/header/
+ * @package CyanTheme
+ */
 
+use Cyan\Theme\Helpers\Templates;
+
+$render_template = $args['render_template'] ?? true;
+?>
 <!DOCTYPE html>
-<html <?php language_attributes() ?>>
+<html lang="en">
 
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport"
 			  content="width=device-width, initial-scale=1.0">
-		<?php wp_head() ?>
+		<?php wp_head(); ?>
 	</head>
 
-	<body <?php body_class() ?>>
-
-		<div class="backdrop | fixed bg-black/25 inset-0 z-10 opacity-0 pointer-events-none"></div>
-
-		<?php wp_body_open() ?>
-
-		<?php get_template_part( '/assets/icons/icons' ) ?>
+	<body>
+		<?php wp_body_open(); ?>
 
 		<?php if ( $render_template ) : ?>
-			<header class="relative z-10">
-				<div class="desktop-header | hidden md:block">
-					<?php cyn_get_part( '/header/top-header' ) ?>
-
-					<?php cyn_get_part( '/header/bottom-header' ) ?>
+			<header>
+				<div class="hidden lg:block">
+					<?php Templates::getPart( 'desktop-header' ); ?>
 				</div>
-
-				<div class="mobile-header | block md:hidden">
-
+				<div class="lg:hidden">
+					<?php Templates::getPart( 'mobile-header' ); ?>
 				</div>
 			</header>
 		<?php endif; ?>

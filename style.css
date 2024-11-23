@@ -1,10 +1,17 @@
 /*
- * Theme Name: FMD Store
- * Text Domain: fmd-store
- * Tested up to: 6.0.0
- * Requires PHP: 7.4.0
- * License: 
- * License URI: 
- * Description: Online shop
- * Version: 0.0.0
+Theme Name: {themename}
+Theme URI: https://github.com/cyandm/{themename}
+Author: Cyan Dm
+Author URI: https://cyandm.com
+Description: A custom WordPress theme setup.
+Version: 0.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: custom, theme, cyandm
+Text Domain: {themename}
 */
+
+/*Don't write any css code in this file.
+
+All css code should be written in assets/css/style.css for frontend
+and assets/css/admin.css for wordpress editor. for backend.*/

@@ -1,24 +1,16 @@
-<?php get_header() ?>
+<?php
+/*
+Template Name: Single
+Description: A template for displaying a single post type.
+More information at https://developer.wordpress.org/themes/templates/template-hierarchy/#single-hierarchy
+*/
 
 
-<main class="default-page | container mb-9">
-	<div class="paragraph">
-		<h1>
-			<?php the_title() ?>
-		</h1>
+?>
+<?php get_header(); ?>
 
-		<div class="py-2"></div>
-
-		<div class="img-wrapper">
-			<?= wp_get_attachment_image( get_post_thumbnail_id(), 'full' ); ?>
-		</div>
-
-		<div class="py-6"></div>
-
-		<section>
-			<?php the_content() ?>
-		</section>
-	</div>
+<main class="container">
+	<!-- write your code here -->
 </main>
 
-<?php get_footer() ?>
+<?php get_footer();

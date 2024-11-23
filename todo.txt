@@ -1,7 +1,0 @@
-#header - desktop
--- bag, save and account need link
--- bag number
--- chevron on menu is so thin
--- mega menu
--- search category from woocommerce
--- search input is wrong

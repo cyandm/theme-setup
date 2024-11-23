@@ -1,16 +1,27 @@
 {
-	"name": "FMD Store",
+	"name": "cyanthemesetup",
 	"version": "0.0.0",
-	"description": "",
+	"description": "A custom WordPress theme designed to provide a flexible and easy-to-use framework for developers.",
+	"main": "index.php",
 	"scripts": {
-		"init": "npm i esbuild gsap swiper && npm install -D tailwindcss @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio",
-		"w-tailwind": "npx tailwindcss -i ./assets/css/base-tailwind.css -o ./assets/css/final-tailwind.css --watch",
-		"build-tailwind": "npx tailwindcss -i ./assets/css/base-tailwind.css -o ./assets/css/final-tailwind.min.css --minify",
-		"w-js": "esbuild ./assets/js/index.js --outfile=./assets/js/dist/scripts.bundle.js --target=es6,chrome58,edge18,firefox54,safari11 --bundle --watch",
-		"build-js": "esbuild ./assets/js/index.js --outfile=./assets/js/dist/scripts.bundle.min.js --target=es6,chrome58,edge18,firefox54,safari11 --bundle --minify --sourcemap",
-		"build": "npm run build-tailwind && npm run build-js"
+		"watch:css": "npx tailwindcss -i ./assets/css/style.css -o ./assets/css/dist/cyn-theme-style.css --watch",
+		"watch:js": "esbuild ./assets/js/index.js --outfile=./assets/js/dist/cyn-theme-script.bundle.js --target=es6,chrome58,edge18,firefox54,safari11 --bundle --watch",
+		"watch": "npm run watch:css && npm run watch:js",
+		"start": "npm run watch",
+		"build:css": "npx tailwindcss -i ./assets/css/style.css -o ./assets/css/dist/cyn-theme-style.min.css --minify",
+		"build:js": "esbuild ./assets/js/index.js --outfile=./assets/js/dist/cyn-theme-script.bundle.min.js --target=es6,chrome58,edge18,firefox54,safari11 --bundle --minify --sourcemap",
+		"build": "npm run build:css && npm run build:js"
 	},
-	"license": "ISC",
+	"author": "Cyan Dm",
+	"license": "GPL-2.0-or-later",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/cyandm/cyanthemesetup.git"
+	},
+	"homepage": "https://cyandm.com",
+	"bugs": {
+		"url": "https://github.com/cyandm/cyanthemesetup/issues"
+	},
 	"devDependencies": {
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/forms": "^0.5.8",
@@ -21,10 +32,16 @@
 	"dependencies": {
 		"esbuild": "^0.23.1",
 		"gsap": "^3.12.5",
+		"plyr": "^3.7.8",
 		"swiper": "^11.1.11"
 	},
 	"browserslist": [
 		"> 1%",
 		"last 2 version"
+	],
+	"keywords": [
+		"wordpress",
+		"theme",
+		"custom"
 	]
 }

@@ -1,0 +1,13 @@
+{
+	"name": "cyan/theme",
+	"version": "1.0.0",
+	"autoload": {
+		"psr-4": {
+			"Cyan\\Theme\\Classes\\": "includes/classes/",
+			"Cyan\\Theme\\Helpers\\": "includes/helpers/",
+			"Cyan\\Theme\\Helpers\\ACF\\": "includes/helpers/acf/",
+			"Cyan\\Theme\\Helpers\\Exceptions\\": "includes/helpers/exceptions/"
+		}
+	},
+	"require": {}
+}
