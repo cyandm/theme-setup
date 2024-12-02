@@ -11,8 +11,7 @@ use Cyan\Theme\Helpers\Templates;
 $render_template = $args['render_template'] ?? true;
 ?>
 <!DOCTYPE html>
-<html lang="en">
-
+<?php language_attributes(); ?>
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport"
