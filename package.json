@@ -6,7 +6,7 @@
 	"scripts": {
 		"watch:css": "npx tailwindcss -i ./assets/css/style.css -o ./assets/css/dist/cyn-theme-style.css --watch",
 		"watch:js": "esbuild ./assets/js/index.js --outfile=./assets/js/dist/cyn-theme-script.bundle.js --target=es6,chrome58,edge18,firefox54,safari11 --bundle --watch",
-		"watch": "npm run watch:css && npm run watch:js",
+		"watch": "concurrently \"npm run watch:css\" \"npm run watch:js\"",
 		"start": "npm run watch",
 		"build:css": "npx tailwindcss -i ./assets/css/style.css -o ./assets/css/dist/cyn-theme-style.min.css --minify",
 		"build:js": "esbuild ./assets/js/index.js --outfile=./assets/js/dist/cyn-theme-script.bundle.min.js --target=es6,chrome58,edge18,firefox54,safari11 --bundle --minify --sourcemap",
@@ -26,6 +26,7 @@
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/forms": "^0.5.8",
 		"@tailwindcss/typography": "^0.5.15",
+				"concurrently": "^9.1.0",
 		"tailwindcss": "^3.4.10",
 		"zip-build": "^1.8.0"
 	},
