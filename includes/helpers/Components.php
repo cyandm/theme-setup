@@ -37,6 +37,8 @@ class Components {
 	}
 
 	public static function getIcon( $icon_id ) {
+		$icon_id = str_replace( ' ', '-', $icon_id );
+		
 		$json = file_get_contents( THEME_DIR . '/assets/icon/icons.json' );
 		$icons = json_decode( $json, true );
 		$icons = $icons['icons'];
