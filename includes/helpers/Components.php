@@ -36,5 +36,19 @@ class Components {
 		return $navbar_items;
 	}
 
+	public static function getIcon( $icon_id ) {
+		$json = file_get_contents( THEME_DIR . '/assets/icon/icons.json' );
+		$icons = json_decode( $json, true );
+		$icons = $icons['icons'];
+
+		foreach ( $icons as $icon ) {
+			if ( $icon['name'] == $icon_id ) {
+				return $icon['content'];
+			} else {
+				return null;
+			}
+		}
+	}
+
 
 }
