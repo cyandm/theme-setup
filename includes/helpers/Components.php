@@ -44,8 +44,6 @@ class Components {
 		foreach ( $icons as $icon ) {
 			if ( $icon['name'] == $icon_id ) {
 				return $icon['content'];
-			} else {
-				return null;
 			}
 		}
 	}
