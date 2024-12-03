@@ -4,6 +4,8 @@ namespace Cyan\Theme\Helpers;
 
 class Components {
 
+	private static $icons;
+
 	public static function getMenuByLocation( $location ) {
 		// wordpress does not group child menu items with parent menu items
 		$menuLocations = get_nav_menu_locations();
@@ -38,12 +40,14 @@ class Components {
 
 	public static function getIcon( $icon_id ) {
 		$icon_id = str_replace( ' ', '-', $icon_id );
-		
-		$json = file_get_contents( THEME_DIR . '/assets/icon/icons.json' );
-		$icons = json_decode( $json, true );
-		$icons = $icons['icons'];
 
-		foreach ( $icons as $icon ) {
+		if ( ! self::$icons ) {
+			$json = file_get_contents( THEME_DIR . '/assets/icon/icons.json' );
+			self::$icons = json_decode( $json, true );
+			self::$icons = self::$icons['icons'];
+		}
+
+		foreach ( self::$icons as $icon ) {
 			if ( $icon['name'] == $icon_id ) {
 				return $icon['content'];
 			}
