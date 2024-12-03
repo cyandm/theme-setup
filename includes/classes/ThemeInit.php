@@ -136,12 +136,12 @@ class ThemeInit {
 				'type' => $filetype['type'],
 				'proper_filename' => $data['proper_filename']
 			];
-		} );
+		}, 10, 4 );
 
 		add_filter( 'upload_mimes', function ($mimes) {
 			$mimes['svg'] = 'image/svg+xml';
 			return $mimes;
-		} );
+		}, 10, 1 );
 	}
 }
 
