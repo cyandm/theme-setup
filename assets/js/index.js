@@ -3,6 +3,6 @@
  * you must add any functions for every javascript file to the import statement below.
  */
 
-import HelloWorld from './functions/hello-world';
+import { Modals } from './functions/modals';
 
-HelloWorld();
+Modals();

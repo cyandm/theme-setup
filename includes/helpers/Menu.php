@@ -2,11 +2,10 @@
 
 namespace Cyan\Theme\Helpers;
 
-class Components {
-
-	private static $icons;
+class Menu {
 
 	public static function getMenuByLocation( $location ) {
+
 		// wordpress does not group child menu items with parent menu items
 		$menuLocations = get_nav_menu_locations();
 		$navbar_items = wp_get_nav_menu_items( $menuLocations[ $location ] );
@@ -38,21 +37,9 @@ class Components {
 		return $navbar_items;
 	}
 
-	public static function getIcon( $icon_id ) {
-		$icon_id = str_replace( ' ', '-', $icon_id );
-
-		if ( ! self::$icons ) {
-			$json = file_get_contents( THEME_DIR . '/assets/icon/icons.json' );
-			self::$icons = json_decode( $json, true );
-			self::$icons = self::$icons['icons'];
-		}
-
-		foreach ( self::$icons as $icon ) {
-			if ( $icon['name'] == $icon_id ) {
-				return $icon['content'];
-			}
-		}
+	//Only works for menu items that are posts or pages
+	public static function isCurrentPageMenuItem( $menu_item ) {
+		return intval( $menu_item->object_id ) === intval( get_queried_object_id() );
 	}
-
 
 }

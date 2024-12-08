@@ -106,4 +106,9 @@
 		font-feature-settings: 'ss01' 1;
 		font-variant-ligatures: discretionary-ligatures;
 	}
+
+	svg {
+		width: inherit;
+		height: inherit;
+	}
 }
