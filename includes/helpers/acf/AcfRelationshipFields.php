@@ -91,6 +91,7 @@ class AcfRelationshipFields extends AcfField {
 	 *		'save_terms' => 0,
 	 *		'load_terms' => 0,
 	 *		'return_format' => 'id',
+  	 *		'field_type' => 'multi_select',
 	 * ]
 	 * @param string $id The ID of the field
 	 * @return void
@@ -103,6 +104,7 @@ class AcfRelationshipFields extends AcfField {
 			'save_terms' => $additionalAttributes['save_terms'] ?? 0,
 			'load_terms' => $additionalAttributes['load_terms'] ?? 0,
 			'return_format' => $additionalAttributes['return_format'] ?? 'id',
+			'field_type' => $additionalAttributes['field_type'] ?? 'multi_select',
 		], $id );
 	}
 }
