@@ -1,6 +1,6 @@
 {
 	"name": "cyanthemesetup",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "A custom WordPress theme designed to provide a flexible and easy-to-use framework for developers.",
 	"main": "index.php",
 	"scripts": {

@@ -112,3 +112,14 @@
 		height: inherit;
 	}
 }
+
+/*this only handled colors for buttons , size must be handle in own component*/
+@layer components {
+	.btn-primary {
+		@apply block border border-cyan-500 rounded-full text-center;
+	}
+
+	.btn-icon {
+		@apply border border-white/20 rounded-full text-white flex items-center justify-center;
+	}
+}

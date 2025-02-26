@@ -2,54 +2,64 @@
 
 namespace Cyan\Theme\Helpers;
 
-use Cyan\Theme\Helpers\Exceptions\NotFoundException;
 
-class Validators {
+class Validators
+{
 
-	public static function postType( $post_type ) {
-		switch ( $post_type ) {
+	public static function postType($post_type)
+	{
+		switch ($post_type) {
 			case 'post':
 			case 'page':
+			case 'staff':
+			case 'portfolio':
 				return $post_type;
 			default:
-				throw new NotFoundException( 'Post type not found' );
+				wp_die('Post type not found');
 		}
 	}
 
-	public static function taxonomy( $taxonomy ) {
-		switch ( $taxonomy ) {
+	public static function taxonomy($taxonomy)
+	{
+		switch ($taxonomy) {
 			case 'category':
 			case 'post_tag':
+			case 'working_team':
 				return $taxonomy;
 			default:
-				throw new NotFoundException( 'Taxonomy not found' );
+				wp_die('Taxonomy not found');
+			case 'faq_category':
 		}
 	}
 
-	public static function menu( $menu ) {
-		switch ( $menu ) {
+	public static function menu($menu)
+	{
+		switch ($menu) {
 			case 'header-menu':
 			case 'footer-menu':
+			case 'mobile-menu':
 				return $menu;
 			default:
-				throw new NotFoundException( 'Menu not found' );
+				wp_die('menu is not found');
 		}
 	}
 
-	public static function page( $page ) {
-		if ( get_page_by_path( $page ) ) {
+	public static function page($page)
+	{
+		if (get_page_by_path($page)) {
 			return $page;
 		}
 
-		throw new NotFoundException( 'Page not found' );
+		wp_die('Page not found');
 	}
 
-	public static function term( $term ) {
-		if ( get_term_by( 'slug', $term, 'category' ) ) {
+	public static function term($term)
+	{
+		if (get_term_by('slug', $term, 'category')) {
 			return $term;
 		}
 
-		throw new NotFoundException( 'Term not found' );
+		wp_die('Term not found');
 	}
 
 }

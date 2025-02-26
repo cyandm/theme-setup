@@ -10,29 +10,35 @@
 
 namespace Cyan\Theme\Classes;
 
-class CustomCode {
-	public static function init() {
-		add_action( 'wp_head', [ __CLASS__, 'headTag' ] );
-		add_action( 'wp_body_open', [ __CLASS__, 'startBodyTag' ] );
-		add_action( 'wp_footer', [ __CLASS__, 'endBodyTag' ] );
+class CustomCode
+{
+	public static function init()
+	{
+		add_action('wp_head', [__CLASS__, 'headTag']);
+		add_action('wp_body_open', [__CLASS__, 'startBodyTag']);
+		add_action('wp_footer', [__CLASS__, 'endBodyTag']);
+
 
 	}
 
 
-	public static function headTag() {
-		for ( $i = 1; $i <= 10; $i++ ) {
-			echo get_option( "cyn_head_code_$i" );
+	public static function headTag()
+	{
+		for ($i = 1; $i <= 10; $i++) {
+			echo get_option("cyn_head_code_$i");
 		}
 	}
 
-	public static function startBodyTag() {
-		for ( $i = 1; $i <= 10; $i++ ) {
-			echo get_option( "cyn_start_body_code_$i" );
+	public static function startBodyTag()
+	{
+		for ($i = 1; $i <= 10; $i++) {
+			echo get_option("cyn_start_body_code_$i");
 		}
 	}
-	public static function endBodyTag() {
-		for ( $i = 1; $i <= 10; $i++ ) {
-			echo get_option( "cyn_end_body_code_$i" );
+	public static function endBodyTag()
+	{
+		for ($i = 1; $i <= 10; $i++) {
+			echo get_option("cyn_end_body_code_$i");
 		}
 	}
 }

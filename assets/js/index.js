@@ -4,5 +4,16 @@
  */
 
 import { Modals } from './functions/modals';
+import ThemeSwiper from "./functions/Swiper";
+import { postLike } from './functions/like';
+import { comment } from './functions/comment';
+import { PlyrLibs } from "./functions/plyr";
+import { scrollToTop } from "./functions/scrollTop-btn";
+
 
 Modals();
+ThemeSwiper();
+postLike();
+comment();
+PlyrLibs();
+scrollToTop();
