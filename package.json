@@ -4,11 +4,11 @@
 	"description": "A custom WordPress theme designed to provide a flexible and easy-to-use framework for developers.",
 	"main": "index.php",
 	"scripts": {
-		"watch:css": "npx tailwindcss -i ./assets/css/style.css -o ./assets/css/dist/cyn-theme-style.css --watch",
+		"watch:css": "npx @tailwindcss/cli -i ./assets/css/style.css -o ./assets/css/dist/cyn-theme-style.css --watch",
 		"watch:js": "esbuild ./assets/js/index.js --outfile=./assets/js/dist/cyn-theme-script.bundle.js --target=es6,chrome58,edge18,firefox54,safari11 --bundle --watch",
 		"watch": "concurrently \"npm run watch:css\" \"npm run watch:js\"",
 		"start": "npm run watch",
-		"build:css": "npx tailwindcss -i ./assets/css/style.css -o ./assets/css/dist/cyn-theme-style.min.css --minify",
+		"build:css": "npx @tailwindcss/cli -i ./assets/css/style.css -o ./assets/css/dist/cyn-theme-style.min.css --minify",
 		"build:js": "esbuild ./assets/js/index.js --outfile=./assets/js/dist/cyn-theme-script.bundle.min.js --target=es6,chrome58,edge18,firefox54,safari11 --bundle --minify --sourcemap",
 		"build": "npm run build:css && npm run build:js"
 	},
@@ -26,11 +26,13 @@
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/forms": "^0.5.8",
 		"@tailwindcss/typography": "^0.5.15",
-				"concurrently": "^9.1.0",
-		"tailwindcss": "^3.4.10",
+		"concurrently": "^9.1.0",
+		"tailwindcss": "^4.0.9",
 		"zip-build": "^1.8.0"
 	},
 	"dependencies": {
+		"@tailwindcss/cli": "^4.0.9",
+		"@tailwindcss/oxide": "^4.0.6",
 		"esbuild": "^0.23.1",
 		"gsap": "^3.12.5",
 		"plyr": "^3.7.8",
