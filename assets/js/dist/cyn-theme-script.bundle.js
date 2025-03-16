@@ -2311,6 +2311,139 @@
     }
   });
 
+  // assets/js/functions/circle.js
+  function circle() {
+    const circleElements = document.querySelectorAll(
+      '[data-element="circle-section"]'
+    );
+    if (circleElements.length === 0) {
+      return;
+    }
+    circleElements.forEach((element) => {
+      element.style.position = "relative";
+      const div = document.createElement("div");
+      div.classList = "aspect-square w-10 h-10 rounded-full absolute";
+      div.style.zIndex = "-1";
+      const gradients = [
+        "linear-gradient(45deg, #C97C93, #741E42)",
+        "linear-gradient(45deg, #D7F0FF, #493563)",
+        "linear-gradient(45deg, #FEAC76, #872D08)",
+        "linear-gradient(45deg, #6AD5EE, #033A46)",
+        "linear-gradient(45deg, #2B93D1, #0B1964)"
+      ];
+      const usedPositions = [];
+      const usedGradients = [...gradients];
+      for (let index = 0; index < 5; index++) {
+        const innerDiv = div.cloneNode(true);
+        let maxAttempts = 100;
+        let attempts = 0;
+        let position;
+        let overlap;
+        do {
+          position = {
+            top: Math.floor(Math.random() * 80 + 10),
+            left: Math.floor(Math.random() * 80 + 10),
+            scale: Math.random() * 2 + 1
+          };
+          overlap = usedPositions.some((pos) => {
+            const distance = Math.sqrt(
+              Math.pow(pos.top - position.top, 2) + Math.pow(pos.left - position.left, 2)
+            );
+            return distance < (pos.scale + position.scale) * 10;
+          });
+          attempts++;
+          if (attempts >= maxAttempts) {
+            console.warn("Could not find non-overlapping position");
+            break;
+          }
+        } while (overlap);
+        usedPositions.push(position);
+        innerDiv.style.top = "".concat(position.top, "%");
+        innerDiv.style.left = "".concat(position.left, "%");
+        innerDiv.style.transform = "scale(".concat(position.scale, ")");
+        const gradientIndex = Math.floor(Math.random() * usedGradients.length);
+        innerDiv.style.background = usedGradients[gradientIndex];
+        usedGradients.splice(gradientIndex, 1);
+        if (usedGradients.length === 0) {
+          usedGradients.push(...gradients);
+        }
+        innerDiv.style.animation = "float".concat(index + 1, " ").concat(3 + index, "s ease-in-out infinite");
+        const keyframes = "\n				@keyframes float".concat(index + 1, " {\n					0% {\n						transform: translate(0, 0) scale(").concat(position.scale, ");\n					}\n					50% {\n						transform: translate(").concat(Math.random() * 20 - 10, "px, ").concat(Math.random() * 20 - 10, "px) scale(").concat(position.scale, ");\n					}\n					100% {\n						transform: translate(0, 0) scale(").concat(position.scale, ");\n					}\n				}\n			");
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = keyframes;
+        document.head.appendChild(styleSheet);
+        innerDiv.style.transition = "transform 0.3s ease-out";
+        element.appendChild(innerDiv);
+      }
+    });
+  }
+
+  // assets/js/functions/comment.js
+  function comment() {
+    const commentForm = document.querySelector("#commentform");
+    const commentCountElement = document.querySelector(".comment-count");
+    if (commentForm) {
+      commentForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const formData = new FormData(commentForm);
+        fetch(commentForm.action, {
+          method: "POST",
+          body: formData
+        }).then((response) => response.text()).then(() => {
+          location.reload();
+        }).catch((error) => {
+          console.error("Error:", error);
+        });
+      });
+    }
+  }
+
+  // assets/js/functions/like.js
+  function postLike() {
+    if (!localStorage.getItem("guest_user_id")) {
+      const guestUserId2 = Math.floor(1e5 + Math.random() * 9e5).toString();
+      localStorage.setItem("guest_user_id", guestUserId2);
+    }
+    const guestUserId = localStorage.getItem("guest_user_id");
+    const postId = jQuery(".like-container").data("post-id");
+    const likeCount = jQuery(".like-count");
+    const iconEmpty = jQuery(".like-icon-empty");
+    const iconRed = jQuery(".like-icon-red");
+    const likedPosts = JSON.parse(localStorage.getItem("likedPosts") || "{}");
+    if (likedPosts[postId] === true) {
+      iconEmpty.addClass("hidden");
+      iconRed.removeClass("hidden");
+    } else {
+      iconRed.addClass("hidden");
+      iconEmpty.removeClass("hidden");
+    }
+    jQuery(".like-container .like-icon").on("click", function() {
+      jQuery.ajax({
+        url: themeData.restUrl + "cyn/v1/postLike",
+        type: "POST",
+        data: {
+          post_id: postId,
+          guest_user_id: guestUserId
+        },
+        success: function(response) {
+          if (response.success) {
+            if (response.data.liked) {
+              iconEmpty.addClass("hidden");
+              iconRed.removeClass("hidden");
+              likedPosts[postId] = true;
+            } else {
+              iconRed.addClass("hidden");
+              iconEmpty.removeClass("hidden");
+              likedPosts[postId] = false;
+            }
+            localStorage.setItem("likedPosts", JSON.stringify(likedPosts));
+            likeCount.text(response.data.like_count);
+          }
+        }
+      });
+    });
+  }
+
   // assets/js/functions/common.js
   var ENVIRONMENT = "development";
   function isDev() {
@@ -2374,6 +2507,109 @@
       "Toggle"
     );
   }
+
+  // assets/js/functions/plyr.js
+  var import_plyr = __toESM(require_plyr_min());
+  function PlyrLibs() {
+    const plyrElements = document.querySelectorAll(".plyr_element");
+    plyrElements.forEach((el) => {
+      const player = new import_plyr.default(el);
+      console.log(el);
+    });
+  }
+
+  // assets/js/functions/portfolio.js
+  function SinglePortfolio() {
+    const mainBtn = document.querySelector(".main-btn");
+    const slideUpBtns = document.querySelectorAll(".slide-up-btn");
+    if (!mainBtn || !slideUpBtns) return;
+    mainBtn.addEventListener("click", function() {
+      slideUpBtns.forEach((btn) => {
+        btn.classList.toggle("opacity-0");
+        btn.classList.toggle("pointer-events-none");
+        btn.style.transform = btn.classList.contains("opacity-0") ? "translateY(0)" : "translateY(-20px)";
+        btn.style.transition = "transform 0.3s ease-in-out, opacity 0.3s ease-in-out";
+      });
+    });
+  }
+
+  // assets/js/functions/puzzle.js
+  function Puzzle() {
+    const puzzleElements = document.querySelectorAll(
+      '[data-element="puzzle-section"]'
+    );
+    const puzzleBackgrounds = [
+      "".concat(THEME_URI, "assets/image/puzzle-1.png"),
+      "".concat(THEME_URI, "assets/image/puzzle-2.png"),
+      "".concat(THEME_URI, "assets/image/puzzle-3.png"),
+      "".concat(THEME_URI, "assets/image/puzzle-4.png")
+    ];
+    if (puzzleElements.length === 0) {
+      return;
+    }
+    puzzleElements.forEach((element, index) => {
+      element.style.position = "relative";
+      const numPieces = window.innerWidth < 768 ? 3 : window.innerWidth < 1024 ? 8 : 10;
+      const usedPositions = [];
+      for (let i = 0; i < numPieces; i++) {
+        const puzzleDiv = document.createElement("div");
+        puzzleDiv.style.backgroundImage = "url(".concat(puzzleBackgrounds[Math.floor(Math.random() * puzzleBackgrounds.length)], ")");
+        puzzleDiv.style.backgroundSize = "contain";
+        puzzleDiv.style.backgroundRepeat = "no-repeat";
+        puzzleDiv.style.position = "absolute";
+        puzzleDiv.style.width = "80px";
+        puzzleDiv.style.height = "80px";
+        puzzleDiv.style.zIndex = "-1";
+        let maxAttempts = 100;
+        let attempts = 0;
+        let position;
+        let overlap;
+        do {
+          position = {
+            top: Math.floor(Math.random() * 80 + 10),
+            left: Math.floor(Math.random() * 80 + 10),
+            scale: Math.random() * 2 + 1
+          };
+          overlap = usedPositions.some((pos) => {
+            const distance = Math.sqrt(
+              Math.pow(pos.top - position.top, 2) + Math.pow(pos.left - position.left, 2)
+            );
+            return distance < (pos.scale + position.scale) * 10;
+          });
+          attempts++;
+          if (attempts >= maxAttempts) {
+            console.warn("Could not find non-overlapping position");
+            break;
+          }
+        } while (overlap);
+        usedPositions.push(position);
+        puzzleDiv.style.top = "".concat(position.top, "%");
+        puzzleDiv.style.left = "".concat(position.left, "%");
+        puzzleDiv.style.transform = "scale(".concat(position.scale, ")");
+        puzzleDiv.style.transition = "transform 0.3s ease-out";
+        puzzleDiv.style.animation = "float".concat(i, " ").concat(3 + i, "s ease-in-out infinite");
+        const keyframes = "\n				@keyframes float".concat(i, " {\n					0% {\n						transform: translate(0, 0) ;\n					}\n					50% {\n						transform: translate(").concat(Math.random() * 30 - 10, "px, ").concat(Math.random() * 20 - 10, "px) ;\n					}\n					100% {\n						transform: translate(0, 0) ;\n					}\n				}\n			");
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = keyframes;
+        document.head.appendChild(styleSheet);
+        element.appendChild(puzzleDiv);
+      }
+    });
+  }
+
+  // assets/js/functions/scrollTop-btn.js
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("scrollToTopButton");
+    if (button) {
+      button.addEventListener("click", scrollToTop);
+    }
+  });
 
   // node_modules/swiper/shared/ssr-window.esm.mjs
   function isObject(obj) {
@@ -12370,101 +12606,15 @@
   }
   var Swiper_default = ThemeSwiper;
 
-  // assets/js/functions/like.js
-  function postLike() {
-    if (!localStorage.getItem("guest_user_id")) {
-      const guestUserId2 = Math.floor(1e5 + Math.random() * 9e5).toString();
-      localStorage.setItem("guest_user_id", guestUserId2);
-    }
-    const guestUserId = localStorage.getItem("guest_user_id");
-    const postId = jQuery(".like-container").data("post-id");
-    const likeCount = jQuery(".like-count");
-    const iconEmpty = jQuery(".like-icon-empty");
-    const iconRed = jQuery(".like-icon-red");
-    const likedPosts = JSON.parse(localStorage.getItem("likedPosts") || "{}");
-    if (likedPosts[postId] === true) {
-      iconEmpty.addClass("hidden");
-      iconRed.removeClass("hidden");
-    } else {
-      iconRed.addClass("hidden");
-      iconEmpty.removeClass("hidden");
-    }
-    jQuery(".like-container .like-icon").on("click", function() {
-      jQuery.ajax({
-        url: themeData.restUrl + "cyn/v1/postLike",
-        type: "POST",
-        data: {
-          post_id: postId,
-          guest_user_id: guestUserId
-        },
-        success: function(response) {
-          if (response.success) {
-            if (response.data.liked) {
-              iconEmpty.addClass("hidden");
-              iconRed.removeClass("hidden");
-              likedPosts[postId] = true;
-            } else {
-              iconRed.addClass("hidden");
-              iconEmpty.removeClass("hidden");
-              likedPosts[postId] = false;
-            }
-            localStorage.setItem("likedPosts", JSON.stringify(likedPosts));
-            likeCount.text(response.data.like_count);
-          }
-        }
-      });
-    });
-  }
-
-  // assets/js/functions/comment.js
-  function comment() {
-    const commentForm = document.querySelector("#commentform");
-    const commentCountElement = document.querySelector(".comment-count");
-    if (commentForm) {
-      commentForm.addEventListener("submit", function(e) {
-        e.preventDefault();
-        const formData = new FormData(commentForm);
-        fetch(commentForm.action, {
-          method: "POST",
-          body: formData
-        }).then((response) => response.text()).then(() => {
-          location.reload();
-        }).catch((error) => {
-          console.error("Error:", error);
-        });
-      });
-    }
-  }
-
-  // assets/js/functions/plyr.js
-  var import_plyr = __toESM(require_plyr_min());
-  function PlyrLibs() {
-    const plyrElements = document.querySelectorAll(".plyr_element");
-    plyrElements.forEach((el) => {
-      const player = new import_plyr.default(el);
-      console.log(el);
-    });
-  }
-
-  // assets/js/functions/scrollTop-btn.js
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }
-  document.addEventListener("DOMContentLoaded", () => {
-    const button = document.getElementById("scrollToTopButton");
-    if (button) {
-      button.addEventListener("click", scrollToTop);
-    }
-  });
-
   // assets/js/index.js
+  var THEME_URI = "".concat(window.location.origin, "/wp-content/themes/cyandm.com/");
   Modals();
   Swiper_default();
   postLike();
   comment();
   PlyrLibs();
   scrollToTop();
+  circle();
+  Puzzle();
+  SinglePortfolio();
 })();

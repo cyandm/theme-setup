@@ -123,3 +123,9 @@
 		@apply border border-white/20 rounded-full text-white flex items-center justify-center;
 	}
 }
+
+@layer base {
+	swiper-slide.transition-opacity:not(.swiper-slide-active) {
+		opacity: 0 !important;
+	}
+}

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: contactspage
+ * Template Name: contact
  * @package CyanTheme
  */
 
@@ -9,6 +9,6 @@ use Cyan\Theme\Helpers\Templates;
 
 get_header();
 
-Templates::getPage('contacts/hero');
+Templates::getPage( 'contacts/hero' );
 
 get_footer();

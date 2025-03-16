@@ -4,33 +4,34 @@
 use Cyan\Theme\Helpers\Icon;
 
 
-$meet_image = get_field('about_meet_img')
+$meet_image = get_field( 'about_meet_img' )
 
 
-?>
+	?>
 
-<section class="container mx-auto pt-16 flex flex-col justify-center items-center text-neutral-200">
+<section class="container mx-auto pt-16 flex flex-col justify-center items-center text-neutral-200"
+		 data-element="puzzle-section">
 
 
 
-    <?php echo wp_get_attachment_image($meet_image, 'full', 'false'); ?>
+	<?php echo wp_get_attachment_image( $meet_image, 'full', false, [ 'style' => 'max-width: min(700px , 90vw)' ] ); ?>
 
-    <h1 class="text-xl md:text-[28px] lg:[36px] font-bold">
-        <?php _e('وقتشه تک به تک باهم ملاقات کنیم', 'cyan-dm') ?>
-    </h1>
+	<h1 class="text-xl md:text-[28px] lg:[36px] font-bold">
+		<?php _e( 'وقتشه تک به تک باهم ملاقات کنیم', 'cyn-dm' ) ?>
+	</h1>
 
-    <div class="text-base flex flex-col justify-center items-center mb-4">
-        <?php _e('تیم سایان', 'cyan-dm') ?>
+	<div class="text-base flex flex-col justify-center items-center mb-4">
+		<?php _e( 'تیم سایان', 'cyn-dm' ) ?>
 
-        <span class="size-6 rotate-90 text-cyan-500">
-            <?php Icon::print('Arrow,-Forward') ?>
-        </span>
-    </div>
-    
+		<span class="size-6 rotate-90 text-cyan-500">
+			<?php Icon::print( 'Arrow,-Forward' ) ?>
+		</span>
+	</div>
+
 </section>
 
-    <div class="container mx-auto flex mb-t justify-center mb-2">
-        <button class="btn-primary px-6 py-2 text-sm ">
-            <?php _e('مشاهده همه', 'cyan-dm') ?>
-        </button>
-    </div>
+<div class="container mx-auto flex mb-t justify-center mb-2">
+	<button class="btn-primary px-6 py-2 text-sm ">
+		<?php _e( 'مشاهده همه', 'cyn-dm' ) ?>
+	</button>
+</div>
